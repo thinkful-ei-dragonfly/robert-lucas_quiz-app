@@ -1,3 +1,6 @@
+'use strict';
+
+
 import Question from './Question';
 
 class Quiz {
@@ -15,6 +18,12 @@ class Quiz {
 
   }
 
+
+  // Add this new question we created passed in as a param to unasked question array
+
+  new Question('ddfd', )
+
+
   // Example method:
   startGame() {
     this.active = true;
@@ -22,3 +31,15 @@ class Quiz {
 }
 
 export default Quiz;
+
+
+
+// WHAT WIRE FRAME RECOMMENDS/SUGGESTS
+
+// Quiz {
+//   unasked: [Question, Question],
+//   asked: [Question],
+//   score: 0,
+//   scoreHistory: [2, 5],
+//   active: true,
+// }
