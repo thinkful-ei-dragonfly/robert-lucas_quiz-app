@@ -6,9 +6,8 @@ import Question from './Question';
 function main() {
   const q = new Quiz();
   window.q = q;  // adding `q` to `window`, so you can examine it in console
-  
-  console.log(q);
-  
+
+
   const api = new TriviaApi();
   const quiz = new Quiz();
 
@@ -18,10 +17,13 @@ function main() {
 
   api.getQuestions()
     .then(response => {
-      console.log(response.results);
+      // console.log(response.results);
 
       // DONT DO HERE
-      response.results.forEach( quiz.addToUnasked( new Question(textOfQuestion, answer) ) )
+      response.results.forEach(question => {
+        q.addToUnasked(question);
+      } );
+      console.log(q);
       ////   for each a = newQuestion.push(a)   Quiz.addToUnasked()    new Question()
 
       return response.results;
@@ -32,4 +34,3 @@ function main() {
 }
 
 $(main);
-

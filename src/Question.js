@@ -4,8 +4,8 @@ class Question {
 
   /**
    * This constructor creates an individual question that houses.....
-   * 
-   * @param {*} questionText string that represents question 
+   *
+   * @param {*} questionText string that represents question
    * @param {*} rightAnswer string of right answer
    * @param {*} arrayWrong an array of strings that contains all the wrong answers
    */
@@ -15,7 +15,7 @@ class Question {
     this.rightAnswer = rightAnswer;
 
     this.allAnswers = arrayWrong;
-    allAnswers.push(rightAnswer);
+    this.allAnswers.push(rightAnswer);
 
     this.userAnswer = null;
 
@@ -25,7 +25,7 @@ class Question {
 
 //   function addAnswers( arrayWrong )
 
-// }
+}
 
 export default Question;
 
