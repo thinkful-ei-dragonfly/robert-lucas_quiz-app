@@ -15,51 +15,35 @@ function main() {
   const quiz = new Quiz();
   window.quiz = quiz;  // adding `q` to `window`, so you can examine it in console
 
-
   const api = new TriviaApi();
 
   api.getQuestions()
     .then(response => {
-      // console.log(response.results);
-
-      // DONT DO HERE
       response.results.forEach(question => {
         quiz.addToUnasked(question);
-      } );
-      console.log(quiz);
+      })
+    });
+      // console.log(quiz);
 
   const quizDisplay = new QuizDisplay(quiz, '.display');
-
+  //
   const quizStatus = new QuizStatus(quiz, '.status');
 
 
-  
 
-
-  // api.getQuestions()
-  //   .then(response => {
-  //     // console.log(response.results);
-
-  //     // DONT DO HERE
-  //     response.results.forEach(question => {
-  //       quiz.addToUnasked(question);
-  //     } );
-  //     console.log(quiz);
-
-
-  // Instantiate display classes 
+  // Instantiate display classes
 
   // const quizDisplay = new QuizDisplay(quiz, '.display');
 
   // const quizStatus = new QuizStatus(quiz, '.status');
 
 
-  
+
       ////   for each a = newQuestion.push(a)   Quiz.addToUnasked()    new Question()
 
-      return response.results;
 
-    });
+
+
 
 
 }

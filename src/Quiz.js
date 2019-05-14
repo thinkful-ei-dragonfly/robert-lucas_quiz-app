@@ -1,6 +1,5 @@
 'use strict';
 import Model from './lib/Model'
-
 import Question from './Question';
 
 
@@ -9,7 +8,7 @@ class Quiz extends Model {
   static DEFAULT_QUIZ_LENGTH = 2;
 
   constructor() {
-  
+
     super();
 
     // Array of Question instances
@@ -22,6 +21,8 @@ class Quiz extends Model {
     this.score = 0;
     this.scoreHistory = [];
     this.currentQuestion = null;
+    this.isCorrect = false;
+    this.isAnswered = false;
   }
 
   addToUnasked(question) {
@@ -42,7 +43,7 @@ class Quiz extends Model {
   startNewGame() {
     this.active = true;
     this.nextQuestion();
-    this.update();  // render the 
+    this.update();  // render the
   }
 
   /**
@@ -56,9 +57,9 @@ class Quiz extends Model {
   /**
    * Updates the current question to the question that is removed from the unasked array.
    * Adds the current question to the asked array.
-   * updates the this.currentQuestion. 
+   * updates the this.currentQuestion.
    * calls a command to re-render the page with the new question that is currently being asked
-   * 
+   *
    */
   nextQuestion() {
     // runs initially but also runs after a click event handler on a "Continue" button
@@ -72,19 +73,18 @@ class Quiz extends Model {
 
   submitAnswer(answer) {
     if (this.currentQuestion.rightAnswer === answer) {
-      console.log("you were right");
-      score += 1;
-    } else {
-      console.log("you were wrong")
+      this.score += 1;
     }
-    // Validate answers and render some kind of feedback;
+    return this.renderFeedback(this.currentQuestion.rightAnswer === answer);
   }
 
   renderFeedback(result) {
     if (result === true) {
       // render successful feedback
+      return 'You were right';
     } else {
       // render feedback with the right answer
+      return false;
     }
     // generate 'continue' button
   }
