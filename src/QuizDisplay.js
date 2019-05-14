@@ -3,6 +3,7 @@
 import $ from 'jquery';
 import Renderer from './lib/Renderer';
 import Quiz from './Quiz'
+// import { exists } from 'fs';
 
 class QuizDisplay extends Renderer {
 
@@ -12,6 +13,7 @@ class QuizDisplay extends Renderer {
     return {
       'click .start-quiz': 'handleStart',
       'click .submitAnswer': 'handleSubmit',
+      'click .continue': 'handleNextQuestion',
     };
   }
 
@@ -38,10 +40,14 @@ class QuizDisplay extends Renderer {
     if (this.model.isAnswered === true) {
       if (this.model.isCorrect === true) {
         answerString = '';
-        feedback = `<h1>TRUE</h1>`;
+        feedback = `
+          <h1>TRUE</h1>
+          <button class="continue">Next Question</button>`;
       } else {
         answerString = '';
-        feedback = `<h1>FALSE</h1>`
+        feedback = `
+          <h1>FALSE</h1>
+          <button class="continue">Next Question</button>`;
       }
 
     }
@@ -49,6 +55,7 @@ class QuizDisplay extends Renderer {
       // Quiz has not started
       html = this._generateIntro();
     }
+
     if (this.model.asked.length > 0) {
       let currentQuestion = quiz.getCurrentQuestion();
 
@@ -67,8 +74,20 @@ class QuizDisplay extends Renderer {
         ${feedback}
       </form>
       `;
+    }
+
+
+    if (this.model.unasked.length === 0 && this.model.asked.length > 1) {
+      let endMessage = `<h1>You finished the Quiz! Thanks for playing!</h1>
+        <button class="start-quiz">Play again?</button>`;
+        html = endMessage;
+        
 
     }
+
+
+
+
 
     return html;
   }
@@ -87,9 +106,14 @@ class QuizDisplay extends Renderer {
     // this.sendToResults(this.model.isCorrect);
   }
 
-  handleNext(){
-    this.model.isAnswering = false;
+  handleNextQuestion(event) {
+    event.preventDefault();
+    this.model.isCorrect = false;
+    this.model.isAnswered = false;
+    this.model.nextQuestion();
+    this.model.update();
   }
+
   sendToResults(isCorrect){
     if (true) {
 
