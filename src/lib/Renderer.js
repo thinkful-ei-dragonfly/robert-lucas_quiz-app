@@ -19,7 +19,7 @@ class Renderer {
       }); 
     }
     
-    renderers.push(this);
+    renderers.push(this); 
     this.render();
   } 
 

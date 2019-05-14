@@ -1,5 +1,6 @@
 class Model {
   constructor() {
+    
     if (!Model.viewMap) Model.viewMap = new WeakMap();
     Model.viewMap.set(this, []);
   }

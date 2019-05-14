@@ -1,13 +1,17 @@
 'use strict';
-
+import Model from './lib/Model'
 
 import Question from './Question';
 
-class Quiz {
+
+class Quiz extends Model {
 
   static DEFAULT_QUIZ_LENGTH = 2;
 
   constructor() {
+  
+    super();
+
     // Array of Question instances
     this.unasked = [];
     // Array of Question instances
@@ -17,6 +21,7 @@ class Quiz {
     // TASK: Add more props here per the exercise
     this.score = 0;
     this.scoreHistory = [];
+    this.currentQuestion = null;
   }
 
   addToUnasked(question) {
@@ -33,22 +38,38 @@ class Quiz {
     // console.log(this.unasked);
   }
 
-
-
-
   // Example method:
-  startGame() {
+  startNewGame() {
     this.active = true;
     this.nextQuestion();
+    this.update();  // render the 
   }
+
+  /**
+   * Returns the current question field.
+   */
+  getCurrentQuestion() {
+    return this.currentQuestion;
+  }
+
+
+  /**
+   * Updates the current question to the question that is removed from the unasked array.
+   * Adds the current question to the asked array.
+   * updates the this.currentQuestion. 
+   * calls a command to re-render the page with the new question that is currently being asked
+   * 
+   */
   nextQuestion() {
     // runs initially but also runs after a click event handler on a "Continue" button
     let currentQuestion = this.unasked.pop();
     this.asked.push(currentQuestion);
     this.currentQuestion = currentQuestion;
-    return currentQuestion;
+    this.update();
+    // return currentQuestion;
     // This will run after the event handler compares userAnswer to this.asked item's rightAnswer
   }
+
   submitAnswer(answer) {
     if (this.currentQuestion.rightAnswer === answer) {
       console.log("you were right");
@@ -58,6 +79,7 @@ class Quiz {
     }
     // Validate answers and render some kind of feedback;
   }
+
   renderFeedback(result) {
     if (result === true) {
       // render successful feedback
@@ -66,6 +88,7 @@ class Quiz {
     }
     // generate 'continue' button
   }
+
   collectHighScore(){
     function sortNumbers(a,b) {
       return b - a;
