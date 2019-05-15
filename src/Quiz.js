@@ -24,6 +24,7 @@ class Quiz extends Model {
     this.currentQuestion = null;
     this.isCorrect = false;
     this.isAnswered = false;
+    this.userAnswer = '';
   }
 
   addToUnasked(question) {
@@ -37,7 +38,6 @@ class Quiz extends Model {
 
     const newQuestion = new Question(questionText, rightAnswer,arrayWrong)
     this.unasked.push(newQuestion);
-    // console.log(this.unasked);
   }
 
   // Example method:
@@ -73,6 +73,7 @@ class Quiz extends Model {
   }
 
   submitAnswer(answer) {
+    this.userAnswer = answer;
     if (this.currentQuestion.rightAnswer === answer) {
       this.score += 1;
     }

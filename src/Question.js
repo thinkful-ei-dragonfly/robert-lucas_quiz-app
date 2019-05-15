@@ -16,6 +16,7 @@ class Question {
 
     this.allAnswers = arrayWrong;
     this.allAnswers.push(rightAnswer);
+    this.allAnswers.sort();
 
     this.userAnswer = null;
 

@@ -42,12 +42,21 @@ class QuizDisplay extends Renderer {
       if (this.model.isCorrect === true) {
         answerString = '';
         feedback = `
-          <h1>TRUE</h1>
-          <button class="continue">Next Question</button>`;
+          <p>You're right!</p>
+          <p>The correct answer was:</p>
+          <p class='green'>${this.model.currentQuestion.rightAnswer}</p>
+          <button class="continue">Next Question</button>
+          `;
+
+
       } else {
         answerString = '';
         feedback = `
-          <h1>FALSE</h1>
+          <p>Sorry, that's incorrect.</p>
+          <p>You answered with:</p>
+          <p class="red">${this.model.userAnswer}</p>
+          <p>The correct answer was:</p>
+          <p class="green">${this.model.currentQuestion.rightAnswer}</p>
           <button class="continue">Next Question</button>`;
       }
 

@@ -4,8 +4,9 @@ import TriviaApi from './TriviaApi.js';
 import Question from './Question';
 import QuizDisplay from './QuizDisplay';
 import QuizStatus from './QuizStatus';
-import Renderer from './lib/Renderer'
-import Model from './lib/Model'
+import Renderer from './lib/Renderer';
+import Model from './lib/Model';
+import 'normalize.css';
 
 
 
@@ -23,28 +24,9 @@ function main() {
         quiz.addToUnasked(question);
       })
     });
-      // console.log(quiz);
 
   const quizDisplay = new QuizDisplay(quiz, '.display');
-  //
   const quizStatus = new QuizStatus(quiz, '.status');
-
-
-
-  // Instantiate display classes
-
-  // const quizDisplay = new QuizDisplay(quiz, '.display');
-
-  // const quizStatus = new QuizStatus(quiz, '.status');
-
-
-
-      ////   for each a = newQuestion.push(a)   Quiz.addToUnasked()    new Question()
-
-
-
-
-
 
 }
 
