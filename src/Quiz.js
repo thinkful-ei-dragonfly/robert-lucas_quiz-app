@@ -3,6 +3,7 @@ import Model from './lib/Model'
 import Question from './Question';
 
 
+
 class Quiz extends Model {
 
   static DEFAULT_QUIZ_LENGTH = 2;

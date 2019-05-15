@@ -3,7 +3,7 @@
 import $ from 'jquery';
 import Renderer from './lib/Renderer';
 import Quiz from './Quiz'
-// import { exists } from 'fs';
+import TriviaApi from './TriviaApi'
 
 class QuizDisplay extends Renderer {
 
@@ -14,6 +14,7 @@ class QuizDisplay extends Renderer {
       'click .start-quiz': 'handleStart',
       'click .submitAnswer': 'handleSubmit',
       'click .continue': 'handleNextQuestion',
+      'click .start-over': 'handleReset',
     };
   }
 
@@ -56,7 +57,7 @@ class QuizDisplay extends Renderer {
       html = this._generateIntro();
     }
 
-    if (this.model.asked.length > 0) {
+    if (this.model.asked.length > 0 && this.model.asked.length <= 5) {
       let currentQuestion = quiz.getCurrentQuestion();
 
       for (var i = 0; i < currentQuestion.allAnswers.length; i++) {
@@ -77,12 +78,10 @@ class QuizDisplay extends Renderer {
     }
 
 
-    if (this.model.unasked.length === 0 && this.model.asked.length > 1) {
+    if (this.model.unasked.length === 0 && this.model.asked.length === 6) {
       let endMessage = `<h1>You finished the Quiz! Thanks for playing!</h1>
-        <button class="start-quiz">Play again?</button>`;
+        <button class="start-over">Play again?</button>`;
         html = endMessage;
-        
-
     }
 
 
@@ -103,7 +102,6 @@ class QuizDisplay extends Renderer {
       this.model.isCorrect = true;
     }
     this.model.update();
-    // this.sendToResults(this.model.isCorrect);
   }
 
   handleNextQuestion(event) {
@@ -112,6 +110,30 @@ class QuizDisplay extends Renderer {
     this.model.isAnswered = false;
     this.model.nextQuestion();
     this.model.update();
+  }
+  handleReset(){
+    this.model.active = false;
+    this.model.scoreHistory.push(this.model.score);
+    this.model.asked = [];
+    this.model.score = 0;
+    this.model.isAnswered = false;
+    this.model.isCorrect = false;
+
+    const api = new TriviaApi();
+    api.getQuestions()
+      .then(response => {
+        response.results.forEach(question => {
+          quiz.addToUnasked(question);
+        });
+      })
+      .then(response => {
+        this.active = true;
+        this.model.nextQuestion();
+        this.model.update()
+      });
+
+
+
   }
 
   sendToResults(isCorrect){
