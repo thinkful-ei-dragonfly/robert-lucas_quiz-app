@@ -136,7 +136,7 @@ class QuizDisplay extends Renderer {
         });
       })
       .then(response => {
-        this.active = true;
+        this.model.active = true;
         this.model.nextQuestion();
         this.model.update()
       });

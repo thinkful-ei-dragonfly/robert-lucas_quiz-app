@@ -91,19 +91,23 @@ class Quiz extends Model {
     // generate 'continue' button
   }
 
-  collectHighScore(){
-    function sortNumbers(a,b) {
-      return b - a;
+  collectHighScore() {
+  
+    let maxScore = 0;
+
+    for (let i = 0; i < this.scoreHistory.length; i++) {
+      if (this.scoreHistory[i] > maxScore) {
+        maxScore = this.scoreHistory[i];
+      }
     }
-    this.scoreHistory.sort(sortNumbers);
-    if (scoreHistory[0]) {
-      return scoreHistory[0];
-    }
+    
+    return maxScore;
 
   }
 }
 
 export default Quiz;
+
 
 
 
