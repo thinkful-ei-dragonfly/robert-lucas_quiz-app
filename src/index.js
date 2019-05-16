@@ -7,6 +7,8 @@ import QuizStatus from './QuizStatus';
 import Renderer from './lib/Renderer';
 import Model from './lib/Model';
 import 'normalize.css';
+import './display.css';
+import './status.css';
 
 
 

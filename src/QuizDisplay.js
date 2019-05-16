@@ -61,6 +61,7 @@ class QuizDisplay extends Renderer {
       }
 
     }
+
     if (this.model.asked.length === 0) {
       // Quiz has not started
       html = this._generateIntro();
@@ -74,9 +75,9 @@ class QuizDisplay extends Renderer {
         <button class="submitAnswer">${currentQuestion.allAnswers[i]}</button>
         `;
       }
-      let submitButton = `
-        <button type="submit" name="submitAnswer" class="submitAnswer">Submit Answer</button>
-      `;
+      if (this.model.isAnswered === true) {
+        answerString = '';
+      }
       html = `
       <form>
         <legend>${currentQuestion.questionText}</legend>
