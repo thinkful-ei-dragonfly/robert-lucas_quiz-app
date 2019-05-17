@@ -1,1 +1,23 @@
-
+.status {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 1.25em;
+  text-transform: uppercase;
+  background: #F4F3EE;
+}
+.highScore {
+  width: 25ch;
+  text-align: center;
+}
+.score {
+  position: relative;
+  left: 25px;
+  width: 25ch;
+}
+.progress {
+  position: relative;
+  right: 25px;
+  width: 25ch;
+  text-align: right;
+}

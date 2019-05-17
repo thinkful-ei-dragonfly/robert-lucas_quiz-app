@@ -21,12 +21,12 @@ class QuizDisplay extends Renderer {
   _generateIntro() {
     return `
       <div>
-        <p>
-          Welcome to the Trivia Quiz
-        </p>
-        <p>
+        <h2>
+          Welcome to Lucas & Rob's Trivia Quiz
+        </h2>
+        <h3>
           Test your smarts and see how high you can score!
-        </p>
+        </h3>
       </div>
       <div class="buttons">
         <button class="start-quiz">Start Quiz</button>
@@ -42,9 +42,9 @@ class QuizDisplay extends Renderer {
       if (this.model.isCorrect === true) {
         answerString = '';
         feedback = `
-          <p>You're right!</p>
+          <h3>Correct!</h3>
           <p>The correct answer was:</p>
-          <p class='green'>${this.model.currentQuestion.rightAnswer}</p>
+          <p'>${this.model.currentQuestion.rightAnswer}</p>
           <button class="continue">Next Question</button>
           `;
 
@@ -52,11 +52,11 @@ class QuizDisplay extends Renderer {
       } else {
         answerString = '';
         feedback = `
-          <p>Sorry, that's incorrect.</p>
+          <h3>Sorry, that's incorrect.</h3>
           <p>You answered with:</p>
-          <p class="red">${this.model.userAnswer}</p>
+          <p>${this.model.userAnswer}</p>
           <p>The correct answer was:</p>
-          <p class="green">${this.model.currentQuestion.rightAnswer}</p>
+          <p>${this.model.currentQuestion.rightAnswer}</p>
           <button class="continue">Next Question</button>`;
       }
 
@@ -78,9 +78,18 @@ class QuizDisplay extends Renderer {
       if (this.model.isAnswered === true) {
         answerString = '';
       }
+      if (this.model.isAnswered === false) {
+        $('body').removeClass('greenBG').removeClass('redBG');
+      }
+      if (this.model.isAnswered === true && this.model.isCorrect === true) {
+        $('body').addClass('greenBG');
+      }
+      if (this.model.isAnswered === true && this.model.isCorrect === false) {
+        $('body').addClass('redBG');
+      }
       html = `
       <form>
-        <legend>${currentQuestion.questionText}</legend>
+        <h2>${currentQuestion.questionText}</h2>
         ${answerString}
         ${feedback}
       </form>

@@ -13,7 +13,7 @@ class QuizStatus extends Renderer {
 
     // Do what with this.model??
 
-   
+
 
   //  debugger;
 
@@ -23,16 +23,14 @@ class QuizStatus extends Renderer {
       currentProgress = 'Inactive';
     }
 
-    
+
 
     // FUTURE: if we increase question count, need to account for non 5 question total, right now, fine
 
     return `
-      <div>
-      <p class="green">Score: ${this.model.score}</p>
-      <p>High Score: ${this.model.collectHighScore()}</p>
-      <p>Progress: ${currentProgress}</p>
-      </div>
+      <p class="score">Score: <span class="green ">${this.model.score}</span></p>
+      <p class="highScore">High Score: ${this.model.collectHighScore()}</p>
+      <p class="progress">Progress: ${currentProgress}</p>
     `;
 
 

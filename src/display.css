@@ -5,11 +5,45 @@ body {
 }
 .display {
   text-align: center;
+  margin-top: 25vh;
+  background-color:
+}
+.display h1,
+.display h2,
+.display h3 {
+  font-weight: 400;
+  max-width: 35ch;
+  margin: 0 auto 45px;
+}
+.display h2 {
+  font-size: 2em;
+}
+
+button,
+.start-quiz {
+  background: transparent;
+  padding: 1em 2em;
+  border: 1px solid black;
+  transition: border .25s ease, background .25s ease, color .25s ease;
+}
+button:hover {
+  background: black;
+  color: white;
+  cursor: pointer;
+}
+button.continue,
+button.start-over {
+  margin-top: 32px;
+}
+.redBG {
+  background-color: #E0AFA0;
 }
 .red {
-  font-weight: 500;
-  color: red;
+  color: #E0AFA0;
+}
+.greenBG {
+  background-color: #9EBC9E;
 }
 .green {
-  color: green;
+  color: #9EBC9E;
 }
