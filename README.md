@@ -1,10 +1,9 @@
-## Thinkful - Quiz App OOP Starter with Webpack
+## Thinkful - Quiz App
 
 ### Installation
 
-Simply run `npm install` after cloning the repo
+Simply run `npm install` after cloning the repo.
 
-### Instructions
+### Start application locally
 
-Follow the instructions from the curriculum to build out the necessary classes for your OOP Quiz application.
-
+Run `npm start` inside the project directory.
